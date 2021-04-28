@@ -1,12 +1,12 @@
 <?php 
 /*
-Plugin Name: Vbee - Text to Speech
-Plugin URI: https://vbee.vn
+Plugin Name: Vbee Plugin
+Plugin URI: https://huykira.net
 Description: Text to audio plugin
-Author: Vbee.vn
+Author: Huy Kira
 Version: 1.0
-Author URI: https://vbee.vn
-Text Domain: vbee.vn
+Author URI: http://www.huykira.net
+Text Domain: vbee
 */
 
 if ( !function_exists( 'add_action' ) ) {

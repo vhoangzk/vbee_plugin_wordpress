@@ -67,18 +67,10 @@ class VbeeSettingsPage {
         );
 
         add_settings_field(
-            'username',
-            'Username',
-            array( $this, 'username' ),
+            'address', 
+            'API Address Url', 
+            array( $this, 'url_callback' ), 
             'vbee-setting-admin', 
-            'setting_section_1'
-        );
-
-        add_settings_field(
-            'address',
-            'API Address Url',
-            array( $this, 'url_callback' ),
-            'vbee-setting-admin',
             'setting_section_1'
         );
 
@@ -174,7 +166,6 @@ class VbeeSettingsPage {
      */
     public function sanitize( $input ){
         $new_input = array();
-        if( isset( $input['address'] ) ) $new_input['username'] = ( $input['username'] );
         if( isset( $input['address'] ) ) $new_input['address'] = ( $input['address'] );
         if( isset( $input['appid'] ) ) $new_input['appid'] = sanitize_text_field( $input['appid'] );
         if( isset( $input['audiotype'] ) ) $new_input['audiotype'] = sanitize_text_field( $input['audiotype'] );
@@ -204,31 +195,24 @@ class VbeeSettingsPage {
      * Callback Function 
      */
 
-    public function username(){
-        printf(
-            '<input class="input-style" type="text" id="username" name="vbee-options[username]" value="%s" />',
-            isset( $this->options['username'] ) ? esc_attr( $this->options['username']) : ''
-        );
-    }
-
     public function url_callback(){
         printf(
             '<input class="input-style" type="text" id="address" name="vbee-options[address]" value="%s" />',
-            isset( $this->options['address'] ) ? esc_attr( $this->options['address']) : ''
+            isset( $this->options['address'] ) ? esc_attr( $this->options['address']) : 'https://vbee.vn/api/v1/convert-articles-api'
         );
     }
 
     public function appid_callback(){
         printf(
             '<input class="input-style" type="text" id="appid" name="vbee-options[appid]" value="%s" />',
-            isset( $this->options['appid'] ) ? esc_attr( $this->options['appid']) : ''
+            isset( $this->options['appid'] ) ? esc_attr( $this->options['appid']) : 'c1c4a3f82f182ba5099edb1c'
         );
     }
 
     public function audiotype_callback(){
         printf(
             '<input class="input-style" type="text" id="audiotype" name="vbee-options[audiotype]" value="%s" />',
-            isset( $this->options['audiotype'] ) ? esc_attr( $this->options['audiotype']) : ''
+            isset( $this->options['audiotype'] ) ? esc_attr( $this->options['audiotype']) : 'mp3'
         );
     }
 
@@ -263,7 +247,7 @@ class VbeeSettingsPage {
     public function id_callback(){
         printf(
             '<input class="input-style" type="text" id="id" name="vbee-options[id]" value="%s" />',
-            isset( $this->options['id'] ) ? esc_attr( $this->options['id']) : ''
+            isset( $this->options['id'] ) ? esc_attr( $this->options['id']) : 'sg_male_minhhoang_news_48k-hsmm'
         );
     }
 
