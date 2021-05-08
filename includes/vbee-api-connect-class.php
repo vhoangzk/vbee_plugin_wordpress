@@ -12,6 +12,26 @@ class VbeeApiClass {
     public function __construct(){
         $this->callback();
         $this->options = get_option('vbee-options');
+        $voices = [];
+        if (isset($this->options['id1'])) $voices[] = [
+            "id" => $this->options['id1'] ? $this->options['id1'] : "hn_male_manhdung_news_48k-thg",
+            "rate" => $this->options['rate'] ? $this->options['rate'] : 1
+        ];
+
+        if (isset($this->options['id2'])) $voices[] = [
+            "id" => $this->options['id2'] ? $this->options['id2'] : "hn_female_ngochuyen_news_48k-thg",
+            "rate" => $this->options['rate'] ? $this->options['rate'] : 1
+        ];
+
+        if (isset($this->options['id3'])) $voices[] = [
+            "id" => $this->options['id3'] ? $this->options['id3'] : "hue_female_huonggiang_news_48k-thg",
+            "rate" => $this->options['rate'] ? $this->options['rate'] : 1
+        ];
+
+        if (!isset($this->options['id1']) && !isset($this->options['id2']) && !isset($this->options['id3'])) $voices[] = [
+            "id" => "hue_female_huonggiang_news_48k-thg",
+            "rate" => 1
+        ];
 
         $this->dataApi = array(
             "content" => "",
@@ -23,12 +43,7 @@ class VbeeApiClass {
             "timeBreakAfterTitle" => $this->options['timebreakaftertitle'] ? $this->options['timebreakaftertitle'] : "0.5",
             "timeBreakAfterSapo" => $this->options['timebreakaftersapo'] ? $this->options['timebreakaftersapo'] : "0.5",
             "timeBreakOfParagraph" => $this->options['timebreakofparagraph'] ? $this->options['timebreakofparagraph'] : "0.5",
-            "voices" => [
-                [
-                    "id" => $this->options['id'] ? $this->options['id'] : "sg_male_minhhoang_news_48k-hsmm",
-                    "rate" => $this->options['rate'] ? $this->options['rate'] : 1
-                ]
-            ]
+            "voices" => $voices
         );
     }
 

@@ -173,7 +173,9 @@ class VbeeSettingsPage {
         if( isset( $input['timebreakaftertitle'] ) ) $new_input['timebreakaftertitle'] = sanitize_text_field( $input['timebreakaftertitle'] );
         if( isset( $input['timebreakaftersapo'] ) ) $new_input['timebreakaftersapo'] = sanitize_text_field( $input['timebreakaftersapo'] );
         if( isset( $input['timebreakofparagraph'] ) ) $new_input['timebreakofparagraph'] = sanitize_text_field( $input['timebreakofparagraph'] );
-        if( isset( $input['id'] ) ) $new_input['id'] = sanitize_text_field( $input['id'] );
+        if( isset( $input['id1'] ) ) $new_input['id1'] = sanitize_text_field( $input['id1'] );
+        if( isset( $input['id2'] ) ) $new_input['id2'] = sanitize_text_field( $input['id2'] );
+        if( isset( $input['id3'] ) ) $new_input['id3'] = sanitize_text_field( $input['id3'] );
         if( isset( $input['rate'] ) ) $new_input['rate'] = sanitize_text_field( $input['rate'] );
         if( isset( $input['clear'] ) ) $new_input['clear'] = sanitize_text_field( $input['clear'] );
 
@@ -245,10 +247,14 @@ class VbeeSettingsPage {
     }
 
     public function id_callback(){
-        printf(
-            '<input class="input-style" type="text" id="id" name="vbee-options[id]" value="%s" />',
-            isset( $this->options['id'] ) ? esc_attr( $this->options['id']) : 'sg_male_minhhoang_news_48k-hsmm'
-        );
+        ?>
+        <input type="checkbox" <?php if(isset($this->options['id1']) &&  $this->options['id1'] == 'hn_male_manhdung_news_48k-thg') { echo 'checked'; } ?> id="id1" name="vbee-options[id1]" value="hn_male_manhdung_news_48k-thg" />
+        <label for="id1">Voice 1</label><br>
+        <input type="checkbox" <?php if(isset($this->options['id2']) &&  $this->options['id2'] == 'hn_female_ngochuyen_news_48k-thg') { echo 'checked'; } ?> id="id2" name="vbee-options[id2]" value="hn_female_ngochuyen_news_48k-thg" />
+        <label for="id2">Voice 2</label><br>
+        <input type="checkbox" <?php if(isset($this->options['id3']) &&  $this->options['id3'] == 'hue_female_huonggiang_news_48k-thg') { echo 'checked'; } ?> id="id3" name="vbee-options[id3]" value="hue_female_huonggiang_news_48k-thg" />
+        <label for="id3">Voice 3</label><br>
+            <?php
     }
 
     public function rate_callback(){
