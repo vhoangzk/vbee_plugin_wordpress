@@ -143,7 +143,6 @@ function vbee_insert_after($content) {
                       var voice = voiceEl.value;
                       var nameVoice = window.location.origin + '/wp-content/uploads/vbee-audios/' +  " . get_the_ID() . " + '--' + voice + '.mp3';
                       audio.setAttribute('src', nameVoice);
-                      console.log(window.location.origin);
                     }
                     </script>";
         $ads .= $script;
