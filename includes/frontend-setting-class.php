@@ -141,8 +141,14 @@ function vbee_insert_after($content) {
                       var voiceEl = document.getElementById('vbee-voice');
                       var audio = document.getElementById('vbee-audio-source');
                       var voice = voiceEl.value;
+                      var currentTimeMs = audio.currentTime;
                       var nameVoice = window.location.origin + '/wp-content/uploads/vbee-audios/' +  " . get_the_ID() . " + '--' + voice + '.mp3';
                       audio.setAttribute('src', nameVoice);
+                      audio.currentTime = currentTimeMs;
+                      audio.play();
+                      audio.addEventListener('ended', function(e){
+                          audio.currentTime = 0;
+                      }, false);
                     }
                     </script>";
         $ads .= $script;
