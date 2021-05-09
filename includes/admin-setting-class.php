@@ -248,12 +248,12 @@ class VbeeSettingsPage {
 
     public function id_callback(){
         ?>
-        <input type="checkbox" <?php if(isset($this->options['id1']) &&  $this->options['id1'] == 'hn_male_manhdung_news_48k-thg') { echo 'checked'; } ?> id="id1" name="vbee-options[id1]" value="hn_male_manhdung_news_48k-thg" />
-        <label for="id1">Voice 1</label><br>
-        <input type="checkbox" <?php if(isset($this->options['id2']) &&  $this->options['id2'] == 'hn_female_ngochuyen_news_48k-thg') { echo 'checked'; } ?> id="id2" name="vbee-options[id2]" value="hn_female_ngochuyen_news_48k-thg" />
-        <label for="id2">Voice 2</label><br>
-        <input type="checkbox" <?php if(isset($this->options['id3']) &&  $this->options['id3'] == 'hue_female_huonggiang_news_48k-thg') { echo 'checked'; } ?> id="id3" name="vbee-options[id3]" value="hue_female_huonggiang_news_48k-thg" />
-        <label for="id3">Voice 3</label><br>
+        <input type="checkbox" <?php if(isset($this->options['id1']) &&  $this->options['id1'] == 'hn_female_ngochuyen_news_48k-thg') { echo 'checked'; } ?> id="id1" name="vbee-options[id1]" value="hn_female_ngochuyen_news_48k-thg" />
+        <label for="id1">HN - Ngọc Huyền - Cao cấp</label><br>
+        <input type="checkbox" <?php if(isset($this->options['id2']) &&  $this->options['id2'] == 'hue_female_huonggiang_news_48k-thg') { echo 'checked'; } ?> id="id2" name="vbee-options[id2]" value="hue_female_huonggiang_news_48k-thg" />
+        <label for="id2">Huế - Hương Giang - Cao cấp</label><br>
+        <input type="checkbox" <?php if(isset($this->options['id3']) &&  $this->options['id3'] == 'sg_male_minhhoang_news_48k-thg') { echo 'checked'; } ?> id="id3" name="vbee-options[id3]" value="sg_male_minhhoang_news_48k-thg" />
+        <label for="id3">SG - Minh Hoàng - Cao cấp</label><br>
             <?php
     }
 

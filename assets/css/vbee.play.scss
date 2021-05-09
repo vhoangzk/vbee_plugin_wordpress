@@ -6,9 +6,16 @@
     display: block;
     margin-bottom: 0!important;
 }
+.vbee-plugin select {
+    border: solid gray .5px;
+    margin-left: 10px;
+    height: 36px;
+    font-size: 10.5px;
+}
 .vbee-plugin{
 	margin-bottom: 15px;
 	text-align: center;
+    display: flex;
 }
 .vbee-plugin.blur {
     position: relative;

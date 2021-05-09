@@ -51,11 +51,22 @@ class VbeeAdminConvert {
     }
 
     // check isset audio
-    public static function vbee_check_isset_audio($audio){
+    public static function vbee_check_isset_audio($audio, $voice = ''){
         $upload_dir = wp_upload_dir();
-        $path = $upload_dir['basedir'] . '/' . FOLDER_AUDIO . '/' . $audio . '.mp3';
+        if (empty($voice)) {
+            $option = get_option('vbee-options');
+            $voice = '';
+            if (isset($option['id1'])) {
+                $voice = $option['id1'];
+            } elseif (isset($option['id2'])) {
+                $voice = $option['id2'];
+            } elseif (isset($option['id3'])) {
+                $voice = $option['id3'];
+            }
+        }
+        $path = $upload_dir['basedir'] . '/' . FOLDER_AUDIO . '/' . $audio . '--' . $voice . '.mp3';
         if(file_exists($path)){
-            return $upload_dir['baseurl'] . '/' . FOLDER_AUDIO . '/' . $audio . '.mp3';
+            return $upload_dir['baseurl'] . '/' . FOLDER_AUDIO . '/' . $audio . '--' . $voice . '.mp3';
         } else {
             return null;
         }

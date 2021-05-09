@@ -14,24 +14,26 @@ class VbeeApiClass {
         $this->options = get_option('vbee-options');
         $voices = [];
         if (isset($this->options['id1'])) $voices[] = [
-            "id" => $this->options['id1'] ? $this->options['id1'] : "hn_male_manhdung_news_48k-thg",
+            "id" => $this->options['id1'] ? $this->options['id1'] : "hn_female_ngochuyen_news_48k-thg",
             "rate" => $this->options['rate'] ? $this->options['rate'] : 1
         ];
 
         if (isset($this->options['id2'])) $voices[] = [
-            "id" => $this->options['id2'] ? $this->options['id2'] : "hn_female_ngochuyen_news_48k-thg",
+            "id" => $this->options['id2'] ? $this->options['id2'] : "hue_female_huonggiang_news_48k-thg",
             "rate" => $this->options['rate'] ? $this->options['rate'] : 1
         ];
 
         if (isset($this->options['id3'])) $voices[] = [
-            "id" => $this->options['id3'] ? $this->options['id3'] : "hue_female_huonggiang_news_48k-thg",
+            "id" => $this->options['id3'] ? $this->options['id3'] : "sg_male_minhhoang_news_48k-thg",
             "rate" => $this->options['rate'] ? $this->options['rate'] : 1
         ];
 
-        if (!isset($this->options['id1']) && !isset($this->options['id2']) && !isset($this->options['id3'])) $voices[] = [
-            "id" => "hue_female_huonggiang_news_48k-thg",
-            "rate" => 1
-        ];
+        if (!isset($this->options['id1']) && !isset($this->options['id2']) && !isset($this->options['id3'])) {
+            $voices[] = [
+                "id" => "hn_female_ngochuyen_news_48k-thg",
+                "rate" => 1
+            ];
+        }
 
         $this->dataApi = array(
             "content" => "",
@@ -97,8 +99,9 @@ class VbeeApiClass {
                             require_once ABSPATH . 'wp-admin/includes/file.php';
                         }
                         $link  = $postdatajson['url'];
+                        $voice  = $postdatajson['voice'];
                         $tmp_file = download_url( $link );
-                        $filepath = ABSPATH . 'wp-content/uploads/' . FOLDER_AUDIO .'/' . $post_id . '.mp3';
+                        $filepath = ABSPATH . 'wp-content/uploads/' . FOLDER_AUDIO .'/' . $post_id . '--' . $voice . '.mp3';
                         copy( $tmp_file, $filepath );
                         @unlink( $tmp_file );
 

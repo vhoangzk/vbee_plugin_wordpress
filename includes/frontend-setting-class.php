@@ -34,7 +34,20 @@ function VbeeActionCheck() {
     check_ajax_referer( 'ajax_security', 'security' );
     if(current_user_can('administrator')){
         if(isset($_POST['post_id']) && $_POST['post_id'] ){
-            $check = VbeeAdminConvert::vbee_check_isset_audio($_POST['post_id']);
+            if (!isset($_POST['voice'])) {
+                $voice = '';
+                $option = get_option('vbee-options');
+                if (isset($option['id1'])) {
+                    $voice = $option['id1'];
+                } elseif (isset($option['id2'])) {
+                    $voice = $option['id2'];
+                } elseif (isset($option['id3'])) {
+                    $voice = $option['id3'];
+                }
+            } else {
+                $voice = $_POST['voice'];
+            }
+            $check = VbeeAdminConvert::vbee_check_isset_audio($_POST['post_id'], $voice);
             if($check){
                 echo json_encode(array(
                     'status' => 1,
@@ -57,8 +70,27 @@ function VbeeActionDelete() {
     check_ajax_referer( 'ajax_security', 'security' );
     if(current_user_can('administrator')){
         if(isset($_POST['post_id']) && $_POST['post_id'] ){
-            $file_path = ABSPATH . 'wp-content/uploads/' . FOLDER_AUDIO .'/' . $_POST['post_id'] . '.mp3';
-            wp_delete_file( $file_path );
+            if (!isset($_POST['voice'])) {
+                $voices = [];
+                $option = get_option('vbee-options');
+                if (isset($option['id1'])) {
+                    $voices[] = $option['id1'];
+                }
+                if (isset($option['id2'])) {
+                    $voices[] = $option['id2'];
+                }
+                if (isset($option['id3'])) {
+                    $voices[] = $option['id3'];
+                }
+            } else {
+                $voices[] = $_POST['voice'];
+            }
+            if (!empty($voices)) {
+                foreach ($voices as $voice) {
+                    $file_path = ABSPATH . 'wp-content/uploads/' . FOLDER_AUDIO .'/' . $_POST['post_id'] . '--' . $voice . '.mp3';
+                    wp_delete_file( $file_path );
+                }
+            }
             echo json_encode(
                 array(
                     'status'=> $_POST['post_id']
@@ -73,9 +105,47 @@ function VbeeActionDelete() {
 function vbee_insert_after($content) {
     $vbee_api_class = new VbeeApiClass();
     $check = VbeeAdminConvert::vbee_check_isset_audio(get_the_ID());
-    $ads = '';
+    $ads = $adsChild = '';
+    $option = get_option('vbee-options');
+    $voices = [];
+    if (isset($option['id1'])) {
+        $voices[] = $option['id1'];
+    }
+    if (isset($option['id2'])) {
+        $voices[] = $option['id2'];
+    }
+    if (isset($option['id3'])) {
+        $voices[] = $option['id3'];
+    }
+    if (in_array('hn_female_ngochuyen_news_48k-thg', $voices)) {
+        $adsChild .= '<option value="hn_female_ngochuyen_news_48k-thg">Miền Bắc</option>';
+    }
+    if (in_array('hue_female_huonggiang_news_48k-thg', $voices)) {
+        $adsChild .= '<option value="hue_female_huonggiang_news_48k-thg">Miền Trung</option>';
+    }
+    if (in_array('sg_male_minhhoang_news_48k-thg', $voices)) {
+        $adsChild .= '<option value="sg_male_minhhoang_news_48k-thg">Miền Nam</option>';
+    }
+
     if($check){
-        $ads = '<div class="vbee-plugin"><audio controls name="media" controlsList="nodownload"><source src="'.$check.'" type="audio/mpeg"></audio></div>';
+        $ads = '<div class="vbee-plugin">
+                    <audio id="vbee-audio-source" controls name="media" controlsList="nodownload">
+                        <source src="' . $check . '" type="audio/mpeg">
+                    </audio>
+                    <select name="voice" id="vbee-voice" onchange="changeVoice()">'
+                    . $adsChild .
+                    '</select>
+                </div>';
+        $script = "<script>
+                    function changeVoice() {
+                      var voiceEl = document.getElementById('vbee-voice');
+                      var audio = document.getElementById('vbee-audio-source');
+                      var voice = voiceEl.value;
+                      var nameVoice = 'http://wordpress.local.com/wp-content/uploads/vbee-audios/' +  " . get_the_ID() . " + '--' + voice + '.mp3';
+                      audio.setAttribute('src', nameVoice);
+                    }
+                    </script>";
+        $ads .= $script;
     }
     if(is_single()){
         $content = $ads.$content;
