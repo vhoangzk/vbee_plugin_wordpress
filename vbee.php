@@ -1,11 +1,11 @@
 <?php 
 /*
 Plugin Name: Vbee Plugin
-Plugin URI: https://huykira.net
+Plugin URI: https://vbee.vn
 Description: Text to audio plugin
-Author: Huy Kira
+Author: Vbee
 Version: 1.0
-Author URI: http://www.huykira.net
+Author URI: https://vbee.vn
 Text Domain: vbee
 */
 
