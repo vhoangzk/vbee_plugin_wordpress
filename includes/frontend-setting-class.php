@@ -157,7 +157,7 @@ function vbee_insert_after($content) {
         $ads .= $script;
     }
     if(is_single()){
-        $content .= $ads;
+        $content = $ads . $content;
     }
     return $content;
 }
