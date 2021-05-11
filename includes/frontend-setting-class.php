@@ -118,13 +118,13 @@ function vbee_insert_after($content) {
         $voices[] = $option['id3'];
     }
     if (in_array('hn_female_ngochuyen_news_48k-thg', $voices)) {
-        $adsChild .= '<option value="hn_female_ngochuyen_news_48k-thg">Miền Bắc</option>';
+        $adsChild .= '<option value="hn_female_ngochuyen_news_48k-thg">Ngọc Huyền - Miền Bắc</option>';
     }
     if (in_array('hue_female_huonggiang_news_48k-thg', $voices)) {
-        $adsChild .= '<option value="hue_female_huonggiang_news_48k-thg">Miền Trung</option>';
+        $adsChild .= '<option value="hue_female_huonggiang_news_48k-thg">Hương Giang - Miền Trung</option>';
     }
     if (in_array('sg_male_minhhoang_news_48k-thg', $voices)) {
-        $adsChild .= '<option value="sg_male_minhhoang_news_48k-thg">Miền Nam</option>';
+        $adsChild .= '<option value="sg_male_minhhoang_news_48k-thg">Minh Hoàng - Miền Nam</option>';
     }
 
     if($check){
