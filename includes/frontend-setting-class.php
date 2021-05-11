@@ -154,11 +154,11 @@ function vbee_insert_after($content) {
         $ads .= $script;
     }
     if(is_single()){
-        $content = $ads.$content;
+        $content .= $ads;
     }
     return $content;
 }
-add_filter( 'the_content', 'vbee_insert_after' );
+add_filter( 'the_title', 'vbee_insert_after' );
 
 // check update content wordpress
 function update_check_audio($post_id) {
