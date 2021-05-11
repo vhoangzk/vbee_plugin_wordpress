@@ -143,9 +143,12 @@ function vbee_insert_after($content) {
                       var voice = voiceEl.value;
                       var currentTimeMs = audio.currentTime;
                       var nameVoice = window.location.origin + '/wp-content/uploads/vbee-audios/' +  " . get_the_ID() . " + '--' + voice + '.mp3';
+                      var isPaused = audio.paused;
                       audio.setAttribute('src', nameVoice);
                       audio.currentTime = currentTimeMs;
-                      audio.play();
+                      if (!isPaused) {
+                          audio.play();
+                      }
                       audio.addEventListener('ended', function(e){
                           audio.currentTime = 0;
                       }, false);
@@ -158,7 +161,7 @@ function vbee_insert_after($content) {
     }
     return $content;
 }
-add_filter( 'the_title', 'vbee_insert_after' );
+add_filter( 'the_content', 'vbee_insert_after' );
 
 // check update content wordpress
 function update_check_audio($post_id) {
