@@ -199,57 +199,65 @@ class VbeeSettingsPage {
 
     public function url_callback(){
         printf(
-            '<input class="input-style" type="text" id="address" name="vbee-options[address]" value="%s" />',
-            isset( $this->options['address'] ) ? esc_attr( $this->options['address']) : 'https://vbee.vn/api/v1/convert-articles-api'
+            '<input class="input-style" type="text" id="address" name="vbee-options[address]" required value="%s" />
+                    <small><i>(Địa chỉ API chuyển văn bản sang giọng nói)</i></small>',
+            isset( $this->options['address'] ) ? esc_attr( $this->options['address']) : 'https://es.vbeecore.com/api/articles'
         );
     }
 
     public function appid_callback(){
         printf(
-            '<input class="input-style" type="text" id="appid" name="vbee-options[appid]" value="%s" />',
-            isset( $this->options['appid'] ) ? esc_attr( $this->options['appid']) : 'c1c4a3f82f182ba5099edb1c'
+            '<input class="input-style" type="text" id="appid" name="vbee-options[appid]" required value="%s" />
+                    <small><i>(APP_ID báo nói của tài khoản)</i></small>',
+            isset( $this->options['appid'] ) ? esc_attr( $this->options['appid']) : ''
         );
     }
 
     public function audiotype_callback(){
         printf(
-            '<input class="input-style" type="text" id="audiotype" name="vbee-options[audiotype]" value="%s" />',
+            '<input class="input-style" type="text" id="audiotype" name="vbee-options[audiotype]" required disabled value="%s" />
+                    <small><i>(Định dạng file audio. Mặc định là mp3)</i></small>',
             isset( $this->options['audiotype'] ) ? esc_attr( $this->options['audiotype']) : 'mp3'
         );
     }
 
     public function bitrate_callback(){
         printf(
-            '<input class="input-style" type="number" id="bitrate" name="vbee-options[bitrate]" value="%s" />',
+            '<input class="input-style" type="number" id="bitrate" name="vbee-options[bitrate]" required value="%s" />
+                    <small><i>(Chất lượng file audio. Mặc định là 128Kbps)</i></small>',
             isset( $this->options['bitrate'] ) ? esc_attr( $this->options['bitrate']) : 128000
         );
     }
 
     public function timebreakaftertitle_callback(){
         printf(
-            '<input class="input-style" type="number" id="timebreakaftertitle" name="vbee-options[timebreakaftertitle]" value="%s" />',
+            '<input class="input-style" type="number" id="timebreakaftertitle" name="vbee-options[timebreakaftertitle]" required value="%s" />
+                    <small><i>(Thời gian nghỉ sau tiêu đề)</i></small>',
             isset( $this->options['timebreakaftertitle'] ) ? esc_attr( $this->options['timebreakaftertitle']) : 0.5
         );
     }
 
     public function timebreakaftersapo_callback(){
         printf(
-            '<input class="input-style" type="number" id="timebreakaftersapo" name="vbee-options[timebreakaftersapo]" value="%s" />',
+            '<input class="input-style" type="number" id="timebreakaftersapo" name="vbee-options[timebreakaftersapo]" required value="%s" />
+                    <small><i>(Thời gian nghỉ sau nội dung tóm tắt)</i></small>',
             isset( $this->options['timebreakaftersapo'] ) ? esc_attr( $this->options['timebreakaftersapo']) : 0.5
         );
     }
 
     public function timebreakofparagraph_callback(){
         printf(
-            '<input class="input-style" type="number" id="timebreakofparagraph" name="vbee-options[timebreakofparagraph]" value="%s" />',
+            '<input class="input-style" type="number" id="timebreakofparagraph" name="vbee-options[timebreakofparagraph]" required value="%s" />
+                    <small><i>(Thời gian nghỉ sau tiêu đề ảnh)</i></small>',
             isset( $this->options['timebreakofparagraph'] ) ? esc_attr( $this->options['timebreakofparagraph']) : 0.5
         );
     }
 
     public function id_callback(){
+        $check = (!isset($this->options['id1']) && !isset($this->options['id2']) && !isset($this->options['id3'])) ? 'checked' : '';
         ?>
         <div style="width:100%;margin-bottom:10px">
-            <input type="checkbox" <?php if(isset($this->options['id1']) &&  $this->options['id1'] == 'hn_female_ngochuyen_news_48k-thg') { echo 'checked'; } ?> id="id1" name="vbee-options[id1]" value="hn_female_ngochuyen_news_48k-thg" />
+            <input type="checkbox" <?= $check ?> <?php if(isset($this->options['id1']) &&  $this->options['id1'] == 'hn_female_ngochuyen_news_48k-thg') { echo 'checked'; } ?> id="id1" name="vbee-options[id1]" value="hn_female_ngochuyen_news_48k-thg" />
             <label for="id1">Hà Nội - Ngọc Huyền - Miền Bắc</label>
         </div>
 
@@ -267,8 +275,9 @@ class VbeeSettingsPage {
 
     public function rate_callback(){
         printf(
-            '<input class="input-style" type="number" id="rate" name="vbee-options[rate]" value="%s" />',
-            isset( $this->options['rate'] ) ? esc_attr( $this->options['rate']) : 1
+            '<input class="input-style" type="number" id="rate" name="vbee-options[rate]" required value="%s" />
+                    <small><i>(Tốc độ của giọng đọc)</i></small>',
+            isset( $this->options['rate'] ) ? esc_attr( $this->options['rate']) : 1.0
         );
     }
     public function clear_callback(){ ?>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="97166d1a-3a14-4c74-b772-5543a77fc943" name="Local Plugin WP" url="http://localhost">
+        <fileTransfer mountedRoot="C:\Users\User\Desktop\vbee_plugin_wordpress" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>
