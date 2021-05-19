@@ -1,10 +1,10 @@
 <?php 
 /*
-Plugin Name: Vbee Plugin
+Plugin Name: Text To Speech Plugin
 Plugin URI: https://vbee.vn
 Description: Text to audio plugin
 Author: Vbee
-Version: 1.0
+Version: 1.0.0
 Author URI: https://vbee.vn
 Text Domain: vbee
 */
