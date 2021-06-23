@@ -64,9 +64,9 @@ class VbeeAdminConvert {
                 $voice = $option['id3'];
             }
         }
-        $path = $upload_dir['basedir'] . '/' . FOLDER_AUDIO . '/' . $audio . '--' . $voice . '.mp3';
+        $path = $upload_dir['basedir'] . '/' . VBEE_FOLDER_AUDIO . '/' . $audio . '--' . $voice . '.mp3';
         if(file_exists($path)){
-            return $upload_dir['baseurl'] . '/' . FOLDER_AUDIO . '/' . $audio . '--' . $voice . '.mp3';
+            return $upload_dir['baseurl'] . '/' . VBEE_FOLDER_AUDIO . '/' . $audio . '--' . $voice . '.mp3';
         } else {
             return null;
         }

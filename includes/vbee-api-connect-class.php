@@ -55,7 +55,7 @@ class VbeeApiClass {
         $this->dataApi['httpCallback'] = get_the_permalink($id);
         $urlApi = $this->options['address'];
        
-        $curl = curl_init();
+        /*$curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => $urlApi,
             CURLOPT_RETURNTRANSFER => true,
@@ -73,7 +73,22 @@ class VbeeApiClass {
 
         $response = curl_exec($curl);
         $err = curl_error($curl);
-        curl_close($curl);
+        curl_close($curl);*/
+
+        $args = array(
+            'body'        => json_encode($this->dataApi),
+            'timeout'     => '0',
+            'redirection' => '5',
+            'httpversion' => '2',
+            'blocking'    => true,
+            'headers'     => array(
+                "Content-Type" => "application/json"
+            ),
+            'cookies'     => array(),
+        );
+
+
+        $response = wp_remote_post($urlApi, $args);
 
         return array(
             'res' => $response,
@@ -101,7 +116,12 @@ class VbeeApiClass {
                         $link  = $postdatajson['url'];
                         $voice  = $postdatajson['voice'];
                         $tmp_file = download_url( $link );
-                        $filepath = ABSPATH . 'wp-content/uploads/' . FOLDER_AUDIO .'/' . $post_id . '--' . $voice . '.mp3';
+                        $upload_dir = wp_upload_dir();
+                        $dir_path = $upload_dir['basedir'] . '/' . VBEE_FOLDER_AUDIO;
+                        if (!file_exists($dir_path)) {
+                            wp_mkdir_p($dir_path);
+                        }
+                        $filepath = $dir_path .'/' . $post_id . '--' . $voice . '.mp3';
                         copy( $tmp_file, $filepath );
                         @unlink( $tmp_file );
 

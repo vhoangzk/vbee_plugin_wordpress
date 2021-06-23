@@ -2,7 +2,7 @@
 /*
 Plugin Name: Text To Speech Plugin
 Plugin URI: https://vbee.vn
-Description: Text to audio plugin
+Description: Vbee Plugin là một plugin giúp chuyển đổi văn bản thành giọng nói tích hợp ngay trên website WordPress của bạn với các đặc điểm nổi trội. Điểm đặc biệt của plugin này chính là công nghệ Text To Speech sẵn có của Vbee, với 3 giọng đọc của 3 vùng miền Bắc, Trung, Nam cho người đọc tha hồ lựa chọn. Để được hướng dẫn kết nối API. Liên hệ với chúng tôi qua các kênh liên lạc sau: <br> Hotline: <a href="tel:02499993399">024.9999.3399</a> Zalo: <a href="tel:0901533799">0901.533.799</a> Facebook: <a href="https://www.facebook.com/vbee.aivoicesolutions" target="_blank">https://www.facebook.com/vbee.aivoicesolutions</a>
 Author: Vbee
 Version: 1.0.0
 Author URI: https://vbee.vn
@@ -16,7 +16,7 @@ if ( !function_exists( 'add_action' ) ) {
 
 define('VBEE_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('VBEE_PLUGIN_RIR', plugin_dir_path(__FILE__));
-define('FOLDER_AUDIO', 'vbee-audios');
+define('VBEE_FOLDER_AUDIO', 'vbee-audios');
 
 // load textdomain
 add_action('plugins_loaded', 'vbee_init');
@@ -27,7 +27,7 @@ function vbee_init() {
 // active plugin
 register_activation_hook( __FILE__, 'vbee_activate' );
 function vbee_activate(){
-    $uploads_dir = trailingslashit( wp_upload_dir()['basedir'] ) . FOLDER_AUDIO;
+    $uploads_dir = trailingslashit( wp_upload_dir()['basedir'] ) . VBEE_FOLDER_AUDIO;
     wp_mkdir_p( $uploads_dir );
 }
 
