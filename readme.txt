@@ -13,7 +13,20 @@ Text-to-speech conversion
 
 == Description ==
 
-Not finished yet
+*   Trước tiên, bạn cần sở hữu tài khoản tại website https://vbee.vn/
+*   Mua gói cước báo nói bất kì
+*   Tạo một app_id trong phần danh sách api cms. Nếu không thể tạo, hãy liên hệ với admin để được hỗ trợ
+
+*   Sau khi cài đặt plugin, các trường dữ liệu bắt buộc sẽ là:
+*   API Address Url (mặc định là: https://vbee.vn/api/v1/convert-articles-api)
+*   App ID
+*   Bit Rate (mặc định là: 128000)
+*   Time break after title (mặc định là: 0.5)
+*   Time break after sapo (mặc định là: 0.5)
+*   Time break of paragraph (mặc định là: 0.5)
+*   Voice (chọn ít nhất 1)
+*   Rate (mặc định là: 1.0)
+*   Clear vbee database when deactivating plugin (Xóa cái file audio và cài đặt plugin sau khi vô hiệu hóa plugin)
 
 == Frequently Asked Questions ==
 
