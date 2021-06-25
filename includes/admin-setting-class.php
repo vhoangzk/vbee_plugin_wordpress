@@ -257,7 +257,7 @@ class VbeeSettingsPage {
         $check = (!isset($this->options['id1']) && !isset($this->options['id2']) && !isset($this->options['id3'])) ? 'checked' : '';
         ?>
         <div style="width:100%;margin-bottom:10px">
-            <input type="checkbox" <?php echo $check ?> <?php if(isset($this->options['id1']) &&  $this->options['id1'] == 'hn_female_ngochuyen_news_48k-thg') { echo 'checked'; } ?> id="id1" name="vbee-options[id1]" value="hn_female_ngochuyen_news_48k-thg" />
+            <input type="checkbox" <?php echo esc_html($check) ?> <?php if(isset($this->options['id1']) &&  $this->options['id1'] == 'hn_female_ngochuyen_news_48k-thg') { echo 'checked'; } ?> id="id1" name="vbee-options[id1]" value="hn_female_ngochuyen_news_48k-thg" />
             <label for="id1">Hà Nội - Ngọc Huyền - Miền Bắc</label>
         </div>
 

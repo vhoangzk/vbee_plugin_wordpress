@@ -79,8 +79,8 @@ class VbeeAdminConvert {
             $check_adio = get_post_meta( $post_id, 'check_audio', true);
             echo '<div class="action-vbee-audio" id="vbee-'.$post_id.'">';
                 if($check_isset){
-                    echo '<a href="' . $check_isset . '" tag class="test-audio" target="_blank">'.__("Nghe thử", "vbee").'</a>'
-                            .'<a class="del-audio action_delete" data-id="'.$post_id.'">'.__("Xóa audio", "vbee").'</a>';
+                    echo '<a href="' . esc_html($check_isset) . '" tag class="test-audio" target="_blank">'.__("Nghe thử", "vbee").'</a>'
+                            .'<a class="del-audio action_delete" data-id="' . esc_html($post_id) . '">'.__("Xóa audio", "vbee").'</a>';
                 } else {
                     if($check_adio == 2){
                         echo '<a class="inprocess-audio">'.__("Đang tạo audio", "vbee").'</a>';
